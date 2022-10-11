@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+
+import useTypedSelector from "../../hooks/useTypedSelector";
+import { setMode } from "../../store/slices/LevelSlice";
 
 import './ModeChanger.scss';
 
 function ModeChanger() {
-  const [mode, setMode] = useState('block');
+  const { mode } = useTypedSelector(state => state);
+  const dispatch = useDispatch();
 
   const onCrossClick = () => {
-    setMode('cross');
+    dispatch(setMode('cross'));
   }
 
   const onBlockClick = () => {
-    setMode('block');
+    dispatch(setMode('block'));
   }
 
   return (
