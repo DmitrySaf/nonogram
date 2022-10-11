@@ -6,7 +6,7 @@ import './App.scss';
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <h1>Nonogram</h1>
       <Table />
     </div>
