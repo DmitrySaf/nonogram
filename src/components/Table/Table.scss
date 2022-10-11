@@ -16,11 +16,11 @@
     font-weight: 400;
     cursor: pointer;
     &_theme {
-      &_filled {
+      &_block {
         background-color: $color-primary;
         cursor: default;
       }
-      &_empty {
+      &_cross {
         position: relative;
         cursor: default;
         &::before {
@@ -28,7 +28,7 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          translate: -50%;
+          translate: -50% -50%;
           rotate: 45deg;
           width: 2.5rem;
           height: 0.1875rem;
@@ -40,7 +40,7 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          translate: -50%;
+          translate: -50% -50%;
           rotate: -45deg;
           width: 2.5rem;
           height: 0.1875rem;

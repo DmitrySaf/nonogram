@@ -1,48 +1,55 @@
-import { useState, memo } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import './Table.scss';
-import * as data from '../../assets/levels-data-list.json';
 
-function Table() {
+interface ILevel {
+  id: number,
+  name: string,
+  code: string
+}
+
+function Table({ level }: { level: ILevel}) {
+  const levelCode = level?.code || '';
+  const size = Math.sqrt(levelCode.length);
+
   return (
     <table className="table">
       <tbody className="table__body">
-      {[...Array(10)].map((x, i) =>
-        <ObjectRow key={i} />
+      {[...Array(size)].map((x, i) =>
+        <Row key={i} columns={size} rowCode={levelCode.split('').splice(i * 10, size)} />
       )}
       </tbody>
     </table>
   );
 }
 
-const ObjectRow = () => {
-
+const Row = ({ columns, rowCode }: {columns: number, rowCode: string[]}) => {
   return (
     <tr>
-      {[...Array(10)].map((x, i) =>
-        <ObjectCell key={i} />
+      {[...Array(columns)].map((x, i) =>
+        <Cell key={i} state={parseInt(rowCode[i])} />
       )}
     </tr>
   )
 }
 
-const ObjectCell = () => {
-  const [filled, setFilled] = useState(false);
-  const [empty, setEmpty] = useState(false);
+const Cell = ({ state }: {state: number}) => {
+  const [block, setBlock] = useState(false);
+  const [cross, setCross] = useState(false);
   const cellClasses = classNames({
     'table__cell': true,
-    'table__cell_theme_filled': filled,
-    'table__cell_theme_empty': empty
+    'table__cell_theme_block': block,
+    'table__cell_theme_cross': cross
   });
 
   const onClick = () => {
-    if (filled || empty) return;
-    if (Math.random() < 0.5) {
-      setFilled(true);
+    if (block || cross) return;
+    if (state) {
+      setBlock(true);
       return;
     }
-    setEmpty(true);
+    setCross(true);
   }
 
   return (
