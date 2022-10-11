@@ -1,5 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import classNames from 'classnames';
+
+import useTypedSelector from "../../hooks/useTypedSelector";
+import { loseHealth } from "../../store/slices/LevelSlice";
 
 import './Table.scss';
 
@@ -28,13 +32,15 @@ const Row = ({ columns, rowCode }: {columns: number, rowCode: string[]}) => {
   return (
     <tr>
       {[...Array(columns)].map((x, i) =>
-        <Cell key={i} state={parseInt(rowCode[i])} />
+        <Cell key={i} cellCode={parseInt(rowCode[i])} />
       )}
     </tr>
   )
 }
 
-const Cell = ({ state }: {state: number}) => {
+const Cell = ({ cellCode }: {cellCode: number}) => {
+  const { mode } = useTypedSelector(state => state);
+  const dispatch = useDispatch();
   const [block, setBlock] = useState(false);
   const [cross, setCross] = useState(false);
   const cellClasses = classNames({
@@ -45,11 +51,22 @@ const Cell = ({ state }: {state: number}) => {
 
   const onClick = () => {
     if (block || cross) return;
-    if (state) {
+    if (mode === 'block') {
+      if (cellCode) {
+        setBlock(true);
+        return;
+      }
+      dispatch(loseHealth());
+      setCross(true);
+      return;
+    }
+    if (cellCode) {
+      dispatch(loseHealth());
       setBlock(true);
       return;
     }
     setCross(true);
+    return;
   }
 
   return (
