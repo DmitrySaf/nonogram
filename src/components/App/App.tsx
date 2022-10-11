@@ -4,6 +4,7 @@ import { Provider } from "react-redux/es/exports";
 import Table from "../Table/Table";
 import ModeChanger from "../ModeChanger/ModeChanger";
 import HealthBar from "../HealthBar/HealthBar";
+import RetryModal from "../RetryModal/RetryModal";
 import store from "../../store/store";
 
 import * as data from '../../assets/levels-data-list.json';
@@ -19,6 +20,7 @@ function App() {
         <HealthBar />
         <Table level={levels[0]} />
         <ModeChanger />
+        <RetryModal />
       </div>
     </Provider>
   );

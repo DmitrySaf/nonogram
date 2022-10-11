@@ -1,0 +1,58 @@
+@import '../../assets/styles/variables.scss';
+
+.modal-retry {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  &_hidden {
+    display: none;
+  }
+  &__overflow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $color-disabled;
+  }
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    display: grid;
+    place-items: center;
+    width: 500px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 50px;
+  }
+  &__text {
+    font-size: 2.5rem;
+    color: $color-primary;
+    text-align: center;
+    margin: 0;
+  }
+  &__button {
+    font-size: 2rem;
+    color: $color-primary;
+    cursor: pointer;
+  }
+  &__heart {
+    font-family: 'Material Icons';
+    color: $color-heart;
+    font-size: 3rem;
+  }
+  &__heart-wrapper {
+    background-color: rgb(224, 224, 224);
+    width: 120px;
+    height: 120px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+  }
+}
