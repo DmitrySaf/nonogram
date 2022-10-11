@@ -17,20 +17,37 @@ function Table({ level }: { level: ILevel}) {
   const levelCode = level?.code || '';
   const size = Math.sqrt(levelCode.length);
 
+  const getEveryTenthValue = (string: string, start: number) => {
+    const result = [];
+    for (let i=start; i<string.length; i+=10) result.push(string[i]);
+    return result.join('').match(/1+/g)!.map(item => item.length).join(' ');
+  }
+
   return (
     <table className="table">
       <tbody className="table__body">
-      {[...Array(size)].map((x, i) =>
-        <Row key={i} columns={size} rowCode={levelCode.split('').splice(i * 10, size)} />
-      )}
+        <tr>
+          <td></td>
+          {[...Array(size)].map((x, i) => {
+            return <td key={i}>{getEveryTenthValue(levelCode, i)}</td>
+          })
+          }
+        </tr>
+        {[...Array(size)].map((x, i) =>
+          <Row key={i} columns={size} rowCode={levelCode.slice(i * 10, i * 10 + 10)} />
+        )
+        }
       </tbody>
     </table>
   );
 }
 
-const Row = ({ columns, rowCode }: {columns: number, rowCode: string[]}) => {
+const Row = ({ columns, rowCode }: {columns: number, rowCode: string}) => {
+  const keys = rowCode.match(/1+/g)!.map(item => item.length).join(' ');
+  
   return (
     <tr>
+      <td>{keys}</td>
       {[...Array(columns)].map((x, i) =>
         <Cell key={i} cellCode={parseInt(rowCode[i])} />
       )}
