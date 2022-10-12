@@ -20,7 +20,7 @@ function Table({ level }: { level: ILevel}) {
   const getEveryTenthValue = (string: string, start: number) => {
     const result = [];
     for (let i=start; i<string.length; i+=10) result.push(string[i]);
-    return result.join('').match(/1+/g)!.map(item => item.length).join(' ');
+    return result.join('').match(/1+/g)!.map(item => item.length).join('\n');
   }
 
   return (
@@ -29,7 +29,7 @@ function Table({ level }: { level: ILevel}) {
         <tr>
           <td></td>
           {[...Array(size)].map((x, i) => {
-            return <td key={i}>{getEveryTenthValue(levelCode, i)}</td>
+            return <td key={i} className="table__column-keys">{getEveryTenthValue(levelCode, i)}</td>
           })
           }
         </tr>
@@ -47,7 +47,7 @@ const Row = ({ columns, rowCode }: {columns: number, rowCode: string}) => {
   
   return (
     <tr>
-      <td>{keys}</td>
+      <td className="table__row-keys">{keys}</td>
       {[...Array(columns)].map((x, i) =>
         <Cell key={i} cellCode={parseInt(rowCode[i])} />
       )}

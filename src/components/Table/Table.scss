@@ -50,4 +50,12 @@
       }
     }
   }
+  &__row-keys {
+    text-align: right;
+  }
+  &__column-keys {
+    white-space: break-spaces;
+    text-align: center;
+    vertical-align: bottom;
+  }
 }
