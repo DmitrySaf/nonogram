@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames';
 
@@ -23,6 +23,19 @@ function Table({ level }: { level: ILevel}) {
     return result.join('').match(/1+/g)!.map(item => item.length).join('\n');
   }
 
+  const renderRow = (rowCode: string, num: number) => {
+    const keys = rowCode.match(/1+/g)!.map(item => item.length).join(' ');
+
+    return (
+      <tr key={num}>
+        <td className="table__row-keys">{keys}</td>
+        {[...Array(size)].map((x, i) =>
+          <Cell key={i} cellCode={parseInt(rowCode[i])} />
+        )}
+      </tr>
+    )
+  }
+
   return (
     <table className="table">
       <tbody className="table__body">
@@ -34,7 +47,7 @@ function Table({ level }: { level: ILevel}) {
           }
         </tr>
         {[...Array(size)].map((x, i) =>
-          <Row key={i} columns={size} rowCode={levelCode.slice(i * 10, i * 10 + 10)} />
+          renderRow(levelCode.slice(i * 10, i * 10 + 10), i)
         )
         }
       </tbody>
@@ -42,17 +55,8 @@ function Table({ level }: { level: ILevel}) {
   );
 }
 
-const Row = ({ columns, rowCode }: {columns: number, rowCode: string}) => {
-  const keys = rowCode.match(/1+/g)!.map(item => item.length).join(' ');
+const Row = () => {
   
-  return (
-    <tr>
-      <td className="table__row-keys">{keys}</td>
-      {[...Array(columns)].map((x, i) =>
-        <Cell key={i} cellCode={parseInt(rowCode[i])} />
-      )}
-    </tr>
-  )
 }
 
 const Cell = ({ cellCode }: {cellCode: number}) => {

@@ -2,10 +2,12 @@
 
 .table {
   width: max-content;
-  border: 1px solid #000;
   border-collapse: collapse;
-  &__body {
-    border: 2px solid #000;
+  &__body > tr:nth-child(2) > td:not(:first-child) {
+    border-top: $table-border-style;
+  }
+  &__body > tr:last-child > td:not(:first-child) {
+    border-bottom: $table-border-style;
   }
   &__cell {
     border: 1px solid #000;
@@ -15,6 +17,12 @@
     background-color: #fff;
     font-weight: 400;
     cursor: pointer;
+    &:nth-child(2) {
+      border-left: $table-border-style;
+    }
+    &:last-child {
+      border-right: $table-border-style;
+    }
     &_theme {
       &_block {
         background-color: $color-primary;
@@ -52,10 +60,22 @@
   }
   &__row-keys {
     text-align: right;
+    padding: 0 8px;
+    outline: $keys-border-style;
+    outline-offset: -5px;
+    margin-right: 2px;
+    border-radius: 8px;
+    font-size: 1.5rem;
   }
   &__column-keys {
     white-space: break-spaces;
     text-align: center;
+    padding: 8px 0;
+    outline: $keys-border-style;
+    outline-offset: -5px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    margin-bottom: 2px;
     vertical-align: bottom;
   }
 }
