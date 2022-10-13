@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames';
 
@@ -43,4 +43,4 @@ const Cell = ({ cellCode, index }: {cellCode: number, index: number}) => {
   )
 }
 
-export default Cell;
+export default memo(Cell);

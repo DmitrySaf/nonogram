@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import useTypedSelector from "../../hooks/useTypedSelector";
 
 import './HealthBar.scss';
@@ -21,4 +23,4 @@ function HealthBar() {
   );
 }
 
-export default HealthBar;
+export default memo(HealthBar);

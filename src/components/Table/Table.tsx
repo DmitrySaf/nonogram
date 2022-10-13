@@ -2,6 +2,7 @@ import Row from './Row';
 import KeysRow from "./KeysRow";
 
 import './Table.scss';
+import useTypedSelector from '../../hooks/useTypedSelector';
 
 interface ILevel {
   id: number,
@@ -12,6 +13,17 @@ interface ILevel {
 function Table({ level }: { level: ILevel}) {
   const levelCode = level?.code || '';
   const size = Math.sqrt(levelCode.length);
+  const { accomplishment } = useTypedSelector(state => state);
+
+  const getEveryTenthValue = (string: string, start: number) => {
+    const result = [];
+    for (let i=start; i<string.length; i+=10) result.push(string[i]);
+    return result.join('');
+  };
+
+  const getRowCode = (code: string, index: number) => {
+    return code.slice(index * 10, index * 10 + 10);
+  }
 
   return (
     <table className="table">
@@ -19,14 +31,14 @@ function Table({ level }: { level: ILevel}) {
         <tr>
           <td></td>
           {
-            [...Array(size)].map((x, i) => 
-              <KeysRow levelCode={levelCode} key={i} index={i} />
+            [...Array(size)].map((x, i) =>
+              <KeysRow levelCode={getEveryTenthValue(levelCode, i)} accomplishment={getEveryTenthValue(accomplishment, i)} key={i} />
             )
           }
         </tr>
         {
           [...Array(size)].map((x, i) =>
-            <Row size={size} rowCode={levelCode.slice(i * 10, i * 10 + 10)} index={i} key={i} />
+            <Row accomplishment={getRowCode(accomplishment, i)} size={size} rowCode={getRowCode(levelCode, i)} index={i} key={i} />
           )
         }
       </tbody>
