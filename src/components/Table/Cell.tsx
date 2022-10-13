@@ -6,15 +6,16 @@ import useTypedSelector from "../../hooks/useTypedSelector";
 import { loseHealth } from "../../store/slices/LevelSlice";
 import { updateAccomplishment } from "../../store/slices/LevelSlice";
 
-const Cell = ({ cellCode, index }: {cellCode: number, index: number}) => {
+const Cell = ({ cellCode, index, cellColor }: {cellCode: number, index: number, cellColor: any}) => {
   const { mode } = useTypedSelector(state => state);
   const dispatch = useDispatch();
   const [block, setBlock] = useState(false);
   const [cross, setCross] = useState(false);
+  const isColor = cellColor ? {backgroundColor: cellColor, transition: `all .2s linear ${index*2/100}s`} : undefined;
   const cellClasses = classNames({
     'table__cell': true,
     'table__cell_theme_block': block,
-    'table__cell_theme_cross': cross
+    'table__cell_theme_cross': !cellColor && cross
   });
 
   const onClick = () => {
@@ -39,7 +40,7 @@ const Cell = ({ cellCode, index }: {cellCode: number, index: number}) => {
   }
 
   return (
-    <td className={cellClasses} onClick={onClick}></td>
+    <td className={cellClasses} style={isColor} onClick={onClick}></td>
   )
 }
 

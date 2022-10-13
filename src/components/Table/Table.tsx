@@ -18,9 +18,10 @@ function Table({ level }: { level: ILevel}) {
   const levelCode = level?.code || '';
   const size = Math.sqrt(levelCode.length);
   const { accomplishment } = useTypedSelector(state => state);
+  const isAccomplished = accomplishment.match(/1/g)?.length === levelCode.match(/1/g)?.length;
   const bodyClasses = classNames({
     'table__body': true,
-    'table__body_colored': accomplishment.match(/1/g)?.length === levelCode.match(/1/g)?.length
+    'table__body_colored': isAccomplished
   })
 
   const getEveryTenthValue = (string: string, start: number) => {
@@ -45,34 +46,13 @@ function Table({ level }: { level: ILevel}) {
           }
         </tr>
         {
-          accomplishment.match(/1/g)?.length === levelCode.match(/1/g)?.length 
-            ? <TableColored code={level?.colorsCode} colors={level?.colors}/>
-            : [...Array(size)].map((x, i) =>
-              <Row accomplishment={getRowCode(accomplishment, i)} size={size} rowCode={getRowCode(levelCode, i)} index={i} key={i} />
-            )
+          [...Array(size)].map((x, i) =>
+            <Row accomplishment={getRowCode(accomplishment, i)} colorsCode={isAccomplished && level?.colorsCode} colors={isAccomplished && level?.colors} size={size} rowCode={getRowCode(levelCode, i)} index={i} key={i} />
+          )
         }
       </tbody>
     </table>
   );
-}
-
-const TableColored = ({code, colors}: {code: string, colors: string[]}) => {
-  return (
-    <>
-    {
-          [...Array(10)].map((x, i) =>
-            <tr key={i}>
-              <td className="table__keys table__keys_theme_row table__keys_accomplished">10</td>
-              {[...Array(10)].map((x, j) => {
-                console.log(code.length, i*10 + j)
-                return <td key={j} width={40} height={40} style={{backgroundColor: colors[parseInt(code[i*10 + j])]}} ></td>
-              })}
-            </tr>
-          )
-        }
-    </>
-        
-  )
 }
 
 export default Table;

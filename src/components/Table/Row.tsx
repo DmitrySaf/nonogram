@@ -9,10 +9,12 @@ interface RowProps {
   size: number,
   rowCode: string,
   index: number,
-  accomplishment: string
+  accomplishment: string,
+  colorsCode: string | false,
+  colors: string[] | false
 }
 
-const Row = ({size, rowCode, index, accomplishment}: RowProps) => {
+const Row = ({size, rowCode, index, accomplishment, colorsCode, colors}: RowProps) => {
   const keys = rowCode.match(/1+/g)!.map(item => item.length).join(' ');
   const activeCellsAmount = rowCode.match(/1/g)?.length;
   const keyClassnames = classNames({
@@ -25,7 +27,7 @@ const Row = ({size, rowCode, index, accomplishment}: RowProps) => {
     <tr>
       <td className={keyClassnames}>{keys}</td>
       {[...Array(size)].map((x, i) =>
-        <Cell key={i} index={index * size + i} cellCode={parseInt(rowCode[i])} />
+        <Cell key={i} index={index * size + i} cellCode={parseInt(rowCode[i])} cellColor={colorsCode && colors && colors[parseInt(colorsCode[index * size + i])]} />
       )}
     </tr>
   )
