@@ -4,8 +4,9 @@ import classNames from 'classnames';
 
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { loseHealth } from "../../store/slices/LevelSlice";
+import { updateAccomplishment } from "../../store/slices/LevelSlice";
 
-const Cell = ({ cellCode }: {cellCode: number}) => {
+const Cell = ({ cellCode, index }: {cellCode: number, index: number}) => {
   const { mode } = useTypedSelector(state => state);
   const dispatch = useDispatch();
   const [block, setBlock] = useState(false);
@@ -21,6 +22,7 @@ const Cell = ({ cellCode }: {cellCode: number}) => {
     if (mode === 'block') {
       if (cellCode) {
         setBlock(true);
+        dispatch(updateAccomplishment(index));
         return;
       }
       dispatch(loseHealth());
@@ -29,11 +31,11 @@ const Cell = ({ cellCode }: {cellCode: number}) => {
     }
     if (cellCode) {
       dispatch(loseHealth());
+      dispatch(updateAccomplishment(index));
       setBlock(true);
       return;
     }
     setCross(true);
-    return;
   }
 
   return (

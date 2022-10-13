@@ -1,5 +1,5 @@
-
 import Row from './Row';
+import KeysRow from "./KeysRow";
 
 import './Table.scss';
 
@@ -13,26 +13,20 @@ function Table({ level }: { level: ILevel}) {
   const levelCode = level?.code || '';
   const size = Math.sqrt(levelCode.length);
 
-  const getEveryTenthValue = (string: string, start: number) => {
-    const result = [];
-    for (let i=start; i<string.length; i+=10) result.push(string[i]);
-    return result.join('').match(/1+/g)!.map(item => item.length).join('\n');
-  }
-
   return (
     <table className="table">
       <tbody className="table__body">
         <tr>
           <td></td>
           {
-            [...Array(size)].map((x, i) => {
-              return <td key={i} className="table__keys table__keys_theme_column">{getEveryTenthValue(levelCode, i)}</td>
-            })
+            [...Array(size)].map((x, i) => 
+              <KeysRow levelCode={levelCode} key={i} index={i} />
+            )
           }
         </tr>
         {
           [...Array(size)].map((x, i) =>
-            <Row size={size} rowCode={levelCode.slice(i * 10, i * 10 + 10)} key={i} />
+            <Row size={size} rowCode={levelCode.slice(i * 10, i * 10 + 10)} index={i} key={i} />
           )
         }
       </tbody>
