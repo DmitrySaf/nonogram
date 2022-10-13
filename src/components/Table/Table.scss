@@ -59,24 +59,27 @@
       }
     }
   }
-  &__row-keys {
-    text-align: right;
-    padding: 0 8px;
-    outline: $keys-border-style;
-    outline-offset: -5px;
-    margin-right: 2px;
-    border-radius: 8px;
-    font-size: 1.5rem;
-  }
-  &__column-keys {
-    white-space: break-spaces;
-    text-align: center;
-    padding: 8px 0;
+  &__keys {
     outline: $keys-border-style;
     outline-offset: -5px;
     border-radius: 8px;
     font-size: 1.5rem;
-    margin-bottom: 2px;
-    vertical-align: bottom;
+    &_theme {
+      &_row {
+        text-align: right;
+        padding: 0 8px;
+        margin-right: 2px;
+      }
+      &_column {
+        white-space: break-spaces;
+        text-align: center;
+        padding: 8px 0;
+        margin-bottom: 2px;
+        vertical-align: bottom;
+      }
+    }
+    &_accomplished {
+      color: $color-disabled;
+    }
   }
 }

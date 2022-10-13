@@ -26,7 +26,7 @@ function Table({ level }: { level: ILevel}) {
           <td></td>
           {
             [...Array(size)].map((x, i) => {
-              return <td key={i} className="table__column-keys">{getEveryTenthValue(levelCode, i)}</td>
+              return <td key={i} className="table__keys table__keys_theme_column">{getEveryTenthValue(levelCode, i)}</td>
             })
           }
         </tr>

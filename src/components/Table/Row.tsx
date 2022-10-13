@@ -11,7 +11,7 @@ const Row = ({size, rowCode}: RowProps) => {
 
   return (
     <tr>
-      <td className="table__row-keys">{keys}</td>
+      <td className="table__keys table__keys_theme_row">{keys}</td>
       {[...Array(size)].map((x, i) =>
         <Cell key={i} cellCode={parseInt(rowCode[i])} />
       )}
