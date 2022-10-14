@@ -17,7 +17,12 @@ function RetryModal() {
   });
 
   useEffect(() => {
-    if (health === 0) setHidden(false);
+    if (health === 0) {
+      setHidden(false);
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset";
+    }
   }, [health])
 
   const onRetry = () => {
