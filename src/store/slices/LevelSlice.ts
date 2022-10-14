@@ -11,7 +11,7 @@ const initialState: LevelInitialState = {
   level: 1,
   health: 3,
   mode: 'block',
-  accomplishment: ''.padStart(256, '0')
+  accomplishment: ''
 };
 
 const levelsSlice = createSlice({
@@ -27,6 +27,7 @@ const levelsSlice = createSlice({
 
       state.accomplishment = accomplishment.substring(0, payload) + '1' + accomplishment.substring(payload + 1)
     },
+    returnToDefaults: () => initialState,
     setMode: (state, action: {payload: string}) => { state.mode = action.payload }
   }
 });
@@ -34,5 +35,12 @@ const levelsSlice = createSlice({
 const { actions, reducer } = levelsSlice
 
 export default reducer;
-export const { loseHealth, setMode, restoreHealth, updateAccomplishment, initAccomplishment } = actions;
+export const {
+  loseHealth,
+  setMode,
+  restoreHealth,
+  updateAccomplishment,
+  initAccomplishment,
+  returnToDefaults
+} = actions;
 export type LevelState = ReturnType<typeof reducer>;

@@ -16,9 +16,7 @@ function Level({ levels }: {levels: any}) {
     <>
       <div className="level__header">
         <h2 className="level__title">Level {id}</h2>
-        <Link to=".." className="level__link">
-
-        </Link>
+        <Link to=".." className="level__link"></Link>
       </div>
       <HealthBar/>
       <Table level={level}/>

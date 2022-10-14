@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
-import { restoreHealth } from "../../store/slices/LevelSlice";
+import { returnToDefaults } from "../../store/slices/LevelSlice";
 
 import './Levels.scss';
 
@@ -18,7 +18,7 @@ function Levels({ levels }: {levels: ILevel[]}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(restoreHealth());
+    dispatch(returnToDefaults());
   }, [])
 
   return (
