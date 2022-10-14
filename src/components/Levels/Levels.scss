@@ -18,6 +18,7 @@
     justify-content: center;
     cursor: pointer;
     transition: .2s all;
+    text-decoration: none;
     &:hover {
       color: #fff;
       background-color: $color-primary;

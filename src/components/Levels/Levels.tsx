@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from "react-router-dom";
+
 import './Levels.scss';
 
 interface ILevel {
@@ -24,9 +26,9 @@ function Levels({ levels }: {levels: ILevel[]}) {
 
 const Level = ({ index }: {index: number}) => {
   return (
-    <div className="levels__level">
+    <Link to={`/level/${index}`} className="levels__level">
       Level {index}
-    </div>
+    </Link>
   )
 }
 

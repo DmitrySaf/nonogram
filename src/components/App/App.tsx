@@ -3,14 +3,12 @@ import { Provider } from "react-redux/es/exports";
 import {
   BrowserRouter as Router,
   Route,
-  Routes
+  Routes,
+  Outlet
 } from "react-router-dom";
 
 import Levels from "../Levels/Levels";
-import Table from "../Table/Table";
-import ModeChanger from "../ModeChanger/ModeChanger";
-import HealthBar from "../HealthBar/HealthBar";
-import RetryModal from "../RetryModal/RetryModal";
+import Level from "../Level/Level";
 import store from "../../store/store";
 
 import * as data from '../../assets/levels-data-list.json';
@@ -21,16 +19,25 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className="container">
-        <h1>Nonogram</h1>
-        <Levels levels={levels}/>
-{/*         <HealthBar />
-        <Table level={levels[0]} />
-        <ModeChanger />
-        <RetryModal /> */}
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+            <Route index element={<Levels levels={levels}/>} />
+            <Route path="/level/:id" element={<Level levels={levels}/>} />
+          </Route>
+        </Routes>
+      </Router>
     </Provider>
   );
+}
+
+const Layout = () => {
+  return (
+    <div className="container">
+      <h1>Nonogram</h1>
+      <Outlet/>
+    </div>
+  )
 }
 
 export default App;
