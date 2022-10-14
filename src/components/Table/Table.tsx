@@ -1,10 +1,13 @@
+import { memo, useEffect } from "react";
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
 
 import Row from './Row';
 import KeysRow from "./KeysRow";
+import useTypedSelector from '../../hooks/useTypedSelector';
+import { initAccomplishment } from "../../store/slices/LevelSlice";
 
 import './Table.scss';
-import useTypedSelector from '../../hooks/useTypedSelector';
 
 interface ILevel {
   id: number,
@@ -22,16 +25,21 @@ function Table({ level }: { level: ILevel}) {
   const tableClasses = classNames({
     'table__wrapper': true,
     'table__wrapper_accomplished': isAccomplished
-  })
+  });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initAccomplishment(levelCode.length));
+  });
 
   const getEveryTenthValue = (string: string, start: number) => {
     const result = [];
-    for (let i=start; i<string.length; i+=10) result.push(string[i]);
+    for (let i=start; i<string.length; i+=16) result.push(string[i]);
     return result.join('');
   };
 
   const getRowCode = (code: string, index: number) => {
-    return code.slice(index * 10, index * 10 + 10);
+    return code.slice(index * size, index * size + size);
   }
 
   return (
@@ -73,4 +81,4 @@ function Table({ level }: { level: ILevel}) {
   );
 }
 
-export default Table;
+export default memo(Table);

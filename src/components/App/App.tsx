@@ -15,7 +15,7 @@ import * as data from '../../assets/levels-data-list.json';
 import './App.scss';
 
 function App() {
-  const [levels, setLevels] = useState(data.levels);
+  const { levels } = data;
 
   return (
     <Provider store={store}>
