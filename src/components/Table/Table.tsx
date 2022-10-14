@@ -30,11 +30,11 @@ function Table({ level }: { level: ILevel}) {
 
   useEffect(() => {
     dispatch(initAccomplishment(levelCode.length));
-  });
+  }, []);
 
   const getEveryTenthValue = (string: string, start: number) => {
     const result = [];
-    for (let i=start; i<string.length; i+=16) result.push(string[i]);
+    for (let i=start; i<string.length; i+=size) result.push(string[i]);
     return result.join('');
   };
 
