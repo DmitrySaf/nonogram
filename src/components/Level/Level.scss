@@ -1,0 +1,47 @@
+@import '../../assets/styles/variables.scss';
+
+.level {
+  &__header {
+    width: 100%;
+    position: relative;
+  }
+  &__title {
+    margin: 0;
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  &__link {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    background-color: rgba(31, 32, 65, .15);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: .3s all;
+    &:hover {
+      background-color: rgba(31, 32, 65, .25);
+    }
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 5px;
+      background-color: $color-primary;
+      width: 5px;
+      height: 16px;
+    }
+    &::before {
+      transform: translate(-50%, -80%) rotate(45deg);
+    }
+    &::after {
+      transform: translate(-50%, -20%) rotate(-45deg);
+
+    }
+  }
+}
+  
