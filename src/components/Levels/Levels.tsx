@@ -7,7 +7,8 @@ import { returnToDefaults } from "../../store/slices/LevelSlice";
 import './Levels.scss';
 
 interface ILevel {
-  id: number,
+  id: string,
+  order: number,
   name: string,
   code: string,
   colorsCode: string,
@@ -19,23 +20,23 @@ function Levels({ levels }: {levels: ILevel[]}) {
 
   useEffect(() => {
     dispatch(returnToDefaults());
-  }, [])
+  }, []);
 
   return (
     <div className="levels">
       {
-        levels.map((item, i) => (
-          <Level key={item.id} index={i + 1} />
+        levels.map(({id, order}) => (
+          <Level key={id} order={order} id={id} />
         ))
       }
     </div>
   );
 }
 
-const Level = ({ index }: {index: number}) => {
+const Level = ({ order, id }: {id: string, order: number}) => {
   return (
-    <Link to={`level/${index}`} className="levels__level">
-      Level {index}
+    <Link to={`level/${id}`} className="levels__level">
+      Level {order}
     </Link>
   )
 }

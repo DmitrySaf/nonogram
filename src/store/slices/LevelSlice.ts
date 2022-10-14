@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface LevelInitialState {
-  level: number,
   health: number,
   mode: string,
   accomplishment: string
 }
 
 const initialState: LevelInitialState = {
-  level: 1,
   health: 3,
   mode: 'block',
   accomplishment: ''

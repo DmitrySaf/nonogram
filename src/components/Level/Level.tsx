@@ -15,7 +15,7 @@ function Level({ levels }: {levels: any}) {
   return (
     <>
       <div className="level__header">
-        <h2 className="level__title">Level {id}</h2>
+        <h2 className="level__title">Level {level.order}</h2>
         <Link to=".." className="level__link"></Link>
       </div>
       <HealthBar/>
