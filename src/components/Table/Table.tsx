@@ -19,9 +19,9 @@ function Table({ level }: { level: ILevel}) {
   const size = Math.sqrt(levelCode.length);
   const { accomplishment } = useTypedSelector(state => state);
   const isAccomplished = accomplishment.match(/1/g)?.length === levelCode.match(/1/g)?.length;
-  const bodyClasses = classNames({
-    'table__body': true,
-    'table__body_colored': isAccomplished
+  const tableClasses = classNames({
+    'table__wrapper': true,
+    'table__wrapper_accomplished': isAccomplished
   })
 
   const getEveryTenthValue = (string: string, start: number) => {
@@ -35,23 +35,41 @@ function Table({ level }: { level: ILevel}) {
   }
 
   return (
-    <table className="table">
-      <tbody className={bodyClasses}>
-        <tr>
-          <td></td>
+    <div className={tableClasses}>
+      <div className="table__overflow">
+      <div className="table__rays"></div>
+      </div>
+      
+      <table className="table">
+        <tbody className="table__body" data-name={level.name}>
+          <tr>
+            <td></td>
+            {
+              [...Array(size)].map((x, i) =>
+                <KeysRow
+                  levelCode={getEveryTenthValue(levelCode, i)}
+                  accomplishment={getEveryTenthValue(accomplishment, i)}
+                  key={i}
+                />
+              )
+            }
+          </tr>
           {
             [...Array(size)].map((x, i) =>
-              <KeysRow levelCode={getEveryTenthValue(levelCode, i)} accomplishment={getEveryTenthValue(accomplishment, i)} key={i} />
+              <Row
+                accomplishment={getRowCode(accomplishment, i)}
+                colorsCode={isAccomplished && level?.colorsCode}
+                colors={isAccomplished && level?.colors}
+                size={size}
+                rowCode={getRowCode(levelCode, i)}
+                index={i}
+                key={i}
+              />
             )
           }
-        </tr>
-        {
-          [...Array(size)].map((x, i) =>
-            <Row accomplishment={getRowCode(accomplishment, i)} colorsCode={isAccomplished && level?.colorsCode} colors={isAccomplished && level?.colors} size={size} rowCode={getRowCode(levelCode, i)} index={i} key={i} />
-          )
-        }
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   );
 }
 
