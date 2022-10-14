@@ -1,6 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
+import { restoreHealth } from "../../store/slices/LevelSlice";
 
 import './Levels.scss';
 
@@ -13,6 +15,12 @@ interface ILevel {
 }
 
 function Levels({ levels }: {levels: ILevel[]}) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(restoreHealth());
+  }, [])
+
   return (
     <div className="levels">
       {
