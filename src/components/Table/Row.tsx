@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, memo, useEffect } from "react";
 import classNames from "classnames";
 
 import useTypedSelector from "../../hooks/useTypedSelector";
@@ -15,6 +15,7 @@ interface RowProps {
 }
 
 const Row = ({size, rowCode, index, accomplishment, colorsCode, colors}: RowProps) => {
+  const { mode } = useTypedSelector(state => state);
   const keys = rowCode.match(/1+/g)!.map(item => item.length).join(' ');
   const activeCellsAmount = rowCode.match(/1/g)?.length;
   const keyClassnames = classNames({
@@ -27,7 +28,13 @@ const Row = ({size, rowCode, index, accomplishment, colorsCode, colors}: RowProp
     <tr>
       <td className={keyClassnames}>{keys}</td>
       {[...Array(size)].map((x, i) =>
-        <Cell key={i} index={index * size + i} cellCode={parseInt(rowCode[i])} cellColor={colorsCode && colors && colors[parseInt(colorsCode[index * size + i])]} />
+        <Cell
+          mode={mode}
+          key={i}
+          index={index * size + i}
+          cellCode={parseInt(rowCode[i])}
+          cellColor={colorsCode && colors && colors[parseInt(colorsCode[index * size + i])]}
+        />
       )}
     </tr>
   )

@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux'
 import classNames from "classnames";
 
 import useTypedSelector from "../../hooks/useTypedSelector";
-import { restoreHealth } from "../../store/slices/LevelSlice";
+import { returnToDefaults, initAccomplishment } from "../../store/slices/LevelSlice";
 
 import './RetryModal.scss';
 
-function RetryModal() {
+function RetryModal({size}: {size: number}) {
   const { health } = useTypedSelector(state => state);
   const dispatch = useDispatch();
   const [hidden, setHidden] = useState(true);
@@ -15,6 +15,7 @@ function RetryModal() {
     'modal-retry': true,
     'modal-retry_hidden': hidden
   });
+  console.log(size);
 
   useEffect(() => {
     if (health === 0) {
@@ -27,7 +28,8 @@ function RetryModal() {
 
   const onRetry = () => {
     setHidden(true);
-    dispatch(restoreHealth())
+    dispatch(returnToDefaults());
+    dispatch(initAccomplishment(size));
   }
 
   return (

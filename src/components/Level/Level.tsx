@@ -21,7 +21,7 @@ function Level({ levels }: {levels: any}) {
       <HealthBar/>
       <Table level={level}/>
       <ModeChanger/>
-      <RetryModal/>
+      <RetryModal size={+level.code.length}/>
     </>
   );
 }
