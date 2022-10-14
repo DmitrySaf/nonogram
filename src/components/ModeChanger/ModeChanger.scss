@@ -19,7 +19,7 @@
       position: absolute;
       top: 50%;
       right: 100%;
-      translate: 100% -50%;
+      transform: translate(100%, -50%);
       height: 100%;
       aspect-ratio: 1 / 1;
       border-radius: 35px;
@@ -30,7 +30,7 @@
     &:checked:before {
       content: '';
       right: 0;
-      translate: 0 -50%;
+      transform: translateY(-50%);
     }
   }
   &__mode-grid {
@@ -54,7 +54,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        translate: -50% -50%;
+        transform: translate(-50%, -50%);
         width: 1.5rem;
         height: 1.5rem;
         background-color: $color-primary;
@@ -65,29 +65,21 @@
       position: relative;
       height: 100%;
       width: 100%;
-      &::before {
+      &::before, &::after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
-        translate: -50% -50%;
-        rotate: 45deg;
         width: 1.9375rem;
         height: 0.1875rem;
         border-radius: 5px;
         background-color: #000;
       }
+      &::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
       &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        translate: -50% -50%;
-        rotate: -45deg;
-        width: 1.9375rem;
-        height: 0.1875rem;
-        border-radius: 5px;
-        background-color: #000;
+        transform: translate(-50%, -50%) rotate(-45deg);
       }
     }
   }
