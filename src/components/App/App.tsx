@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Provider } from "react-redux/es/exports";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
 
+import Levels from "../Levels/Levels";
 import Table from "../Table/Table";
 import ModeChanger from "../ModeChanger/ModeChanger";
 import HealthBar from "../HealthBar/HealthBar";
@@ -17,10 +23,11 @@ function App() {
     <Provider store={store}>
       <div className="container">
         <h1>Nonogram</h1>
-        <HealthBar />
+        <Levels levels={levels}/>
+{/*         <HealthBar />
         <Table level={levels[0]} />
         <ModeChanger />
-        <RetryModal />
+        <RetryModal /> */}
       </div>
     </Provider>
   );
