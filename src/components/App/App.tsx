@@ -21,9 +21,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout/>}>
+          <Route path="/nonogram" element={<Layout/>}>
             <Route index element={<Levels levels={levels}/>} />
-            <Route path="/level/:id" element={<Level levels={levels}/>} />
+            <Route path="level/:id" element={<Level levels={levels}/>} />
           </Route>
         </Routes>
       </Router>
