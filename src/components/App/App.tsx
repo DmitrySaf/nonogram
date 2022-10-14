@@ -2,12 +2,12 @@ import { Provider } from "react-redux/es/exports";
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
-  Outlet
+  Routes
 } from "react-router-dom";
 
 import Levels from "../Levels/Levels";
 import Level from "../Level/Level";
+import Layout from "./Layout";
 import store from "../../store/store";
 
 import * as data from '../../assets/levels-data-list.json';
@@ -28,15 +28,6 @@ function App() {
       </Router>
     </Provider>
   );
-}
-
-const Layout = () => {
-  return (
-    <div className="container">
-      <h1>Nonogram</h1>
-      <Outlet/>
-    </div>
-  )
 }
 
 export default App;
