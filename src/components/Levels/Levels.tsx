@@ -14,19 +14,19 @@ interface ILevel {
 
 function Levels({ levels }: {levels: ILevel[]}) {
   return (
-    <main className="levels">
+    <div className="levels">
       {
         levels.map((item, i) => (
           <Level key={item.id} index={i + 1} />
         ))
       }
-    </main>
+    </div>
   );
 }
 
 const Level = ({ index }: {index: number}) => {
   return (
-    <Link to={`/level/${index}`} className="levels__level">
+    <Link to={`level/${index}`} className="levels__level">
       Level {index}
     </Link>
   )
