@@ -6,15 +6,15 @@ interface RowProps {
   accomplishment: string
 }
 
-function KeysRow({levelCode, accomplishment}: RowProps) {
+function KeysRow({ levelCode, accomplishment }: RowProps) {
   const keyClassnames = classNames({
-    'table__keys': true,
-    'table__keys_theme_column': true,
-    'table__keys_accomplished': levelCode.match(/1/g)?.length === accomplishment.match(/1/g)?.length
+    table__keys: true,
+    table__keys_theme_column: true,
+    table__keys_accomplished: levelCode.match(/1/g)?.length === accomplishment.match(/1/g)?.length,
   });
 
   return (
-    <td className={keyClassnames}>{levelCode.match(/1+/g)!.map(item => item.length).join('\n')}</td>
+    <td className={keyClassnames}>{levelCode.match(/1+/g)!.map((item) => item.length).join('\n')}</td>
   );
 }
 

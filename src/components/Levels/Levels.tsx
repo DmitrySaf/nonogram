@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
-import { Link } from "react-router-dom";
-import { returnToDefaults } from "../../store/slices/LevelSlice";
+import { Link } from 'react-router-dom';
+import { returnToDefaults } from '../../store/slices/LevelSlice';
 
 import './Levels.scss';
 
@@ -15,7 +15,7 @@ interface ILevel {
   colors: string[]
 }
 
-function Levels({ levels }: {levels: ILevel[]}) {
+function Levels({ levels }: { levels: ILevel[] }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,20 +25,18 @@ function Levels({ levels }: {levels: ILevel[]}) {
   return (
     <div className="levels">
       {
-        levels.map(({id, order}) => (
-          <Level key={id} order={order} id={id} />
-        ))
+        levels.map(({ id, order }) => {
+          const name = `Level ${order}`;
+
+          return (
+            <Link to={`level/${id}`} className="levels__level">
+              {name}
+            </Link>
+          );
+        })
       }
     </div>
   );
-}
-
-const Level = ({ order, id }: {id: string, order: number}) => {
-  return (
-    <Link to={`level/${id}`} className="levels__level">
-      Level {order}
-    </Link>
-  )
 }
 
 export default Levels;

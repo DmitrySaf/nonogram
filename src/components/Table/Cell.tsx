@@ -1,10 +1,10 @@
 import { useState, memo, useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-import { loseHealth } from "../../store/slices/LevelSlice";
-import { updateAccomplishment } from "../../store/slices/LevelSlice";
-import useTypedSelector from "../../hooks/useTypedSelector";
+import { loseHealth, updateAccomplishment } from '../../store/slices/LevelSlice';
+
+import useTypedSelector from '../../hooks/useTypedSelector';
 
 interface CellProps {
   cellCode: number,
@@ -13,17 +13,18 @@ interface CellProps {
   mode: string
 }
 
-const Cell = ({ cellCode, index, cellColor, mode }: CellProps) => {
-  const { accomplishment } = useTypedSelector(state => state);
-  //const bool = parseInt(accomplishment[index]) ? true : false;
+function Cell({
+  cellCode, index, cellColor, mode,
+}: CellProps) {
+  const { accomplishment } = useTypedSelector((state) => state);
   const [block, setBlock] = useState(false);
   const [cross, setCross] = useState(false);
   const dispatch = useDispatch();
-  const isColor = cellColor ? {backgroundColor: cellColor, transition: `all .2s linear ${index*2/100}s`} : undefined;
+  const isColor = cellColor ? { backgroundColor: cellColor, transition: `all .2s linear ${(index * 2) / 100}s` } : undefined;
   const cellClasses = classNames({
-    'table__cell': true,
-    'table__cell_theme_block': block,
-    'table__cell_theme_cross': !cellColor && cross
+    table__cell: true,
+    table__cell_theme_block: block,
+    table__cell_theme_cross: !cellColor && cross,
   });
 
   useEffect(() => {
@@ -52,11 +53,13 @@ const Cell = ({ cellCode, index, cellColor, mode }: CellProps) => {
       return;
     }
     setCross(true);
-  }
+  };
 
   return (
-    <td className={cellClasses} style={isColor} onClick={onClick}></td>
-  )
+    /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+       jsx-a11y/no-noninteractive-element-interactions */
+    <td className={cellClasses} style={isColor} onClick={onClick} />
+  );
 }
 
 export default memo(Cell);
