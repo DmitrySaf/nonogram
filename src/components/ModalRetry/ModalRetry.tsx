@@ -35,9 +35,9 @@ function ModalRetry({size}: {size: number}) {
     <div className={modalClasses}>
       <div className="modal-retry__overflow"></div>
       <div className="modal-retry__content">
-        <div className="modal-retry__text">Oops... you have no more hearts!</div>
-        <div className="modal-retry__heart-wrapper">
-          <div className="modal-retry__heart">favorite</div>
+        <div className="modal-retry__title">Oops... you have no more hearts!</div>
+        <div className="modal-retry__img-wrapper">
+          <div className="modal-retry__img">favorite</div>
         </div>
         <button type="button" className="modal-retry__button" onClick={onRetry}>Retry</button>
       </div>

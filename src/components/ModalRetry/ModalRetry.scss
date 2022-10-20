@@ -22,7 +22,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: $color-disabled;
+    background-color: $color-overflow;
   }
   &__content {
     position: absolute;
@@ -38,8 +38,8 @@
     border-radius: 16px;
     padding: 50px;
   }
-  &__text {
-    font-size: 2.5rem;
+  &__title {
+    font-size: 250%;
     color: $color-primary;
     text-align: center;
     margin: 0;
@@ -58,18 +58,37 @@
       animation: 2s linear infinite background-color;
     }
   }
-  &__heart {
+  &__img {
     font-family: 'Material Icons';
     color: $color-heart;
     font-size: 3rem;
+    &-bulb {
+      width: 70%;
+      height: 70%;
+    }
   }
-  &__heart-wrapper {
+  &__img-wrapper {
+    position: relative;
     background-color: rgb(224, 224, 224);
     width: 120px;
     height: 120px;
     display: grid;
     place-items: center;
     border-radius: 50%;
+    &::before {
+      content: '+1';
+      font-size: 1rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: $color-secondary;
+      border-radius: 50%;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+    }
   }
 }
 

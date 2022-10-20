@@ -5,6 +5,7 @@ import classNames from "classnames";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { setMode } from "../../store/slices/LevelSlice";
 
+import bulb from '../../assets/img/bulb.png';
 import './ModalHint.scss';
 
 function ModalHint() {
@@ -33,9 +34,9 @@ function ModalHint() {
     <div className={modalClasses}>
       <div className="modal-retry__overflow"></div>
       <div className="modal-retry__content">
-        <div className="modal-retry__text">Oops... you have no more hints!</div>
-        <div className="modal-retry__heart-wrapper">
-          <div className="modal-retry__heart">favorite</div>
+        <div className="modal-retry__title">Oops... you have no more hints!</div>
+        <div className="modal-retry__img-wrapper">
+          <img src={bulb} alt="hint" className="modal-retry__img-bulb" />
         </div>
         <button type="button" className="modal-retry__button" onClick={onCancel}>Cancel</button>
       </div>
