@@ -8,6 +8,7 @@
   justify-items: center;
   &__level {
     width: 30%;
+    min-width: 225px;
     aspect-ratio: 3 / 1;
     border: 1px solid $color-primary;
     border-radius: 20px;

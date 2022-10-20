@@ -28,16 +28,17 @@ function Row({
 
   return (
     <tr>
-      <td className={keyClassnames}>{keys}</td>
-      {[...Array(size)].map((x, i) => (
-        <Cell
-          mode={mode}
-          key={i}
-          index={index * size + i}
-          cellCode={Number(rowCode[i])}
-          cellColor={colorsCode && colors && colors[Number(colorsCode[index * size + i])]}
-        />
-      ))}
+      {
+        [...Array(size)].map((x, i) => (
+          <Cell
+            mode={mode}
+            key={i}
+            index={index * size + i}
+            cellCode={Number(rowCode[i])}
+            cellColor={colorsCode && colors && colors[Number(colorsCode[index * size + i])]}
+          />
+        ))
+      }
     </tr>
   );
 }

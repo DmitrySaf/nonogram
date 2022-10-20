@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Row from './Row';
-import KeysRow from './KeysRow';
+import ColumnKeys from './ColumnKeys';
+import RowKeys from "./RowKeys";
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { initAccomplishment } from '../../store/slices/LevelSlice';
 
@@ -26,8 +27,8 @@ function Table({ level }: { level: ILevel }) {
   const isAccomplished = accomplishment.match(/1/g)?.length === code.match(/1/g)?.length;
   const dispatch = useDispatch();
   const tableClasses = classNames({
-    table__wrapper: true,
-    table__wrapper_accomplished: isAccomplished,
+    'table': true,
+    'table_accomplished': isAccomplished,
   });
 
   useEffect(() => {
@@ -44,22 +45,32 @@ function Table({ level }: { level: ILevel }) {
 
   return (
     <div className={tableClasses}>
-      <div className="table__ray-wrapper">
-        <div className="table__rays" style={{ transition: `.5s opacity ${(code.length * 2) / 100 + 0.05}s` }} />
-        <table className="table">
-          <tbody className="table__body" data-name={level.name}>
-            <tr>
-              <td />
-              {
-                [...Array(size)].map((x, i) => (
-                  <KeysRow
-                    levelCode={getEveryTenthValue(code, i)}
-                    accomplishment={getEveryTenthValue(accomplishment, i)}
-                    key={i}
-                  />
-                ))
-              }
-            </tr>
+      <div className="table__content">
+          <div className="table__empty-space"></div>
+          <div className="table__column-keys">
+            {
+              [...Array(size)].map((x, i) => (
+                <ColumnKeys
+                  levelCode={getEveryTenthValue(code, i)}
+                  accomplishment={getEveryTenthValue(accomplishment, i)}
+                  key={i}
+                />
+              ))
+            }
+          </div>
+          <div className="table__row-keys">
+            {
+              [...Array(size)].map((x, i) => (
+                <RowKeys 
+                  levelCode={getRowCode(code, i)}
+                  accomplishment={getRowCode(accomplishment, i)}
+                  key={i}
+                />
+              ))
+            }
+          </div>
+          <table className="table__blocks">
+            <tbody className="table__body" data-name={level.name}>
             {
               [...Array(size)].map((x, i) => (
                 <Row
@@ -73,12 +84,16 @@ function Table({ level }: { level: ILevel }) {
                 />
               ))
             }
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+{/*       <div className="table__ray-wrapper">
+        <div className="table__rays" style={{ transition: `.5s opacity ${(code.length * 2) / 100 + 0.05}s` }} />
+        
       </div>
       <Link to=".." className="table__return-button" style={{ transitionDelay: `0s, 0s, ${(code.length * 2) / 100 + 0.15}s` }}>
         Return
-      </Link>
+      </Link> */}
     </div>
   );
 }
