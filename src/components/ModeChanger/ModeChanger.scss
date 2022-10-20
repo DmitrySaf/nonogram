@@ -2,86 +2,122 @@
 
 .mode-changer {
   margin-top: 20px;
-  position: relative;
-  width: 110px;
-  height: 55px;
-  &__input {
+  display: flex;
+  gap: 50px;
+  &__mode-wrapper {
     position: relative;
-    appearance: none;
-    width: 100%;
-    height: 100%;
-    background-color: $color-disabled;
-    border-radius: 35px;
-    cursor: pointer;
-    margin: 0;
-    &:before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 100%;
-      transform: translate(100%, -50%);
-      height: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 35px;
-      background-color: #fff;
-      transition: .3s all;
-      box-shadow: 0 0 6px $color-disabled;
-    }
-    &:checked:before {
-      content: '';
-      right: 0;
-      transform: translateY(-50%);
-    }
-  }
-  &__mode-grid {
-    all: unset;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
     display: grid;
     grid-template-columns: 1fr 1fr;
     cursor: pointer;
+    background-color: $color-gray-light;
+    border-radius: 27px;
+    &_equipped {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        box-shadow: 0 0 6px $color-disabled;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: .3s all;
+      }
+    }
+    &_mode {
+      &_cross {
+        &::before {
+          left: 0;
+        }
+      }
+      &_block > .mode-changer__button-block {
+        border-radius: 50%;
+        opacity: 1;
+        &::before, &::after {
+          scale: 1.2;
+        }
+      }
+      &_cross > .mode-changer__button-cross {
+        border-radius: 50%;
+        opacity: 1;
+        &::before, &::after {
+          scale: 1.2;
+        }
+      }
+    }
   }
-  &_mode {
-    &_block {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 1.5rem;
-        height: 1.5rem;
-        background-color: $color-primary;
-        border-radius: 3px;
-      }
+  &__button {
+    position: relative;
+    height: 55px;
+    width: 55px;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  &__button-block {
+    opacity: .5;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: $color-primary;
+      border-radius: 3px;
+      transition: .3s all;
     }
-    &_cross {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      &::before, &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 1.9375rem;
-        height: 0.1875rem;
-        border-radius: 5px;
-        background-color: #000;
-      }
-      &::before {
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-      &::after {
-        transform: translate(-50%, -50%) rotate(-45deg);
-      }
+  }
+  &__button-cross {
+    opacity: .5;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      transition: .3s all;
+      top: 50%;
+      left: 50%;
+      width: 1.5801rem;
+      height: 0.1875rem;
+      border-radius: 5px;
+      background-color: $color-primary;
+      translate: -50% -50%;
     }
+    &::before {
+      rotate: 45deg;
+    }
+    &::after {
+      rotate: -45deg;
+    }
+  }
+  &__button-hint {
+    background-color: $color-gray-light;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    &::before {
+      content: attr(data-hints);
+      position: absolute;
+      top: 0;
+      right: 0;
+      translate: 20% -20%;
+      background-color: $color-secondary;
+      border-radius: 50%;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    &_equipped {
+      outline: 2px solid $color-secondary;
+    }
+  }
+  &__hint-icon {
+    width: 70%;
+    height: 70%;
   }
 }
