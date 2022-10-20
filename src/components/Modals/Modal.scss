@@ -32,25 +32,26 @@
     display: grid;
     place-items: center;
     grid-template-rows: max-content;
-    width: 500px;
-    height: 500px;
+    width: 94vw;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
     background-color: #fff;
     border-radius: 16px;
-    padding: 50px;
+    padding: clamp(20px, 3vw, 50px);
   }
   &__title {
-    font-size: 250%;
+    font-size: clamp(2rem, 5vw, 2.5rem);
     color: $color-primary;
     text-align: center;
     margin: 0;
   }
   &__button {
-    width: 100%;
+    width: 50%;
     border-radius: 40px;
     border: none;
     outline: none;
     background-color: rgb(47,135,237);
-    padding: 15px;
+    padding: clamp(10px, 3vw, 15px);
     font-size: 2rem;
     color: #fff;
     cursor: pointer;
@@ -70,8 +71,9 @@
   &__img-wrapper {
     position: relative;
     background-color: rgb(224, 224, 224);
-    width: 120px;
-    height: 120px;
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    max-width: 120px;
     display: grid;
     place-items: center;
     border-radius: 50%;
