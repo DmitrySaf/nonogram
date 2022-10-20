@@ -3,6 +3,7 @@ import classNames from "classnames";
 
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { setMode } from '../../store/slices/LevelSlice';
+import ModalHint from "../ModalHint/ModalHint";
 
 import bulb from '../../assets/img/bulb.png';
 import './ModeChanger.scss';
@@ -41,6 +42,7 @@ function ModeChanger() {
       <button className={hintClassnames} data-hints={hints} onClick={onHintClick} disabled={hints === 0}>
         <img src={bulb} alt="hint" className="mode-changer__hint-icon" />
       </button>
+      <ModalHint />
     </div>
   );
 }

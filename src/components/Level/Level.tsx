@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Table from '../Table/Table';
 import ModeChanger from '../ModeChanger/ModeChanger';
 import HealthBar from '../HealthBar/HealthBar';
-import RetryModal from '../RetryModal/RetryModal';
+import RetryModal from '../ModalRetry/ModalRetry';
 
 import './Level.scss';
 

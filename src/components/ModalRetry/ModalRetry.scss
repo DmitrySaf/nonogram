@@ -54,7 +54,7 @@
     font-size: 2rem;
     color: #fff;
     cursor: pointer;
-    &:focus, &:hover {
+    &:focus {
       animation: 2s linear infinite background-color;
     }
   }
