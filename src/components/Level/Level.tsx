@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Table from '../Table/Table';
 import ModeChanger from '../ModeChanger/ModeChanger';
 import HealthBar from '../HealthBar/HealthBar';
-import RetryModal from '../ModalRetry/ModalRetry';
+import ModalRetry from '../Modals/ModalRetry';
 
 import './Level.scss';
 
@@ -23,7 +23,7 @@ function Level({ levels }: { levels: any }) {
       <HealthBar />
       <Table level={level} />
       <ModeChanger />
-      <RetryModal size={+level.code.length} />
+      <ModalRetry size={+level.code.length} />
     </>
   );
 }

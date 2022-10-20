@@ -5,15 +5,15 @@ import classNames from "classnames";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { returnToDefaults, initAccomplishment } from "../../store/slices/LevelSlice";
 
-import './ModalRetry.scss';
+import './Modal.scss';
 
 function ModalRetry({size}: {size: number}) {
   const { health } = useTypedSelector(state => state);
   const dispatch = useDispatch();
   const [hidden, setHidden] = useState(true);
   const modalClasses = classNames({
-    'modal-retry': true,
-    'modal-retry_hidden': hidden
+    'modal': true,
+    'modal_hidden': hidden
   });
 
   useEffect(() => {
@@ -33,13 +33,13 @@ function ModalRetry({size}: {size: number}) {
 
   return (
     <div className={modalClasses}>
-      <div className="modal-retry__overflow"></div>
-      <div className="modal-retry__content">
-        <div className="modal-retry__title">Oops... you have no more hearts!</div>
-        <div className="modal-retry__img-wrapper">
-          <div className="modal-retry__img">favorite</div>
+      <div className="modal__overflow"></div>
+      <div className="modal__content">
+        <div className="modal__title">Oops... you have no more hearts!</div>
+        <div className="modal__img-wrapper">
+          <div className="modal__img">favorite</div>
         </div>
-        <button type="button" className="modal-retry__button" onClick={onRetry}>Retry</button>
+        <button type="button" className="modal__button" onClick={onRetry}>Retry</button>
       </div>
     </div>
   );

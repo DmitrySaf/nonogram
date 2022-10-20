@@ -6,15 +6,15 @@ import useTypedSelector from "../../hooks/useTypedSelector";
 import { setMode } from "../../store/slices/LevelSlice";
 
 import bulb from '../../assets/img/bulb.png';
-import './ModalHint.scss';
+import './Modal.scss';
 
 function ModalHint() {
   const { hints } = useTypedSelector(state => state);
   const dispatch = useDispatch();
   const [hidden, setHidden] = useState(true);
   const modalClasses = classNames({
-    'modal-retry': true,
-    'modal-retry_hidden': hidden
+    'modal': true,
+    'modal_hidden': hidden
   });
 
   useEffect(() => {
@@ -32,13 +32,13 @@ function ModalHint() {
 
   return (
     <div className={modalClasses}>
-      <div className="modal-retry__overflow"></div>
-      <div className="modal-retry__content">
-        <div className="modal-retry__title">Oops... you have no more hints!</div>
-        <div className="modal-retry__img-wrapper">
-          <img src={bulb} alt="hint" className="modal-retry__img-bulb" />
+      <div className="modal__overflow"></div>
+      <div className="modal__content">
+        <div className="modal__title">Oops... you have no more hints!</div>
+        <div className="modal__img-wrapper">
+          <img src={bulb} alt="hint" className="modal__img-bulb" />
         </div>
-        <button type="button" className="modal-retry__button" onClick={onCancel}>Cancel</button>
+        <button type="button" className="modal__button" onClick={onCancel}>Cancel</button>
       </div>
     </div>
   );

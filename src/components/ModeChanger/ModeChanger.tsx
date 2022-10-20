@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { setMode } from '../../store/slices/LevelSlice';
-import ModalHint from "../ModalHint/ModalHint";
+import ModalHint from "../Modals/ModalHint";
 
 import bulb from '../../assets/img/bulb.png';
 import './ModeChanger.scss';
