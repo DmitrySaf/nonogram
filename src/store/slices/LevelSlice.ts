@@ -4,12 +4,14 @@ import { createSlice } from '@reduxjs/toolkit';
 interface LevelInitialState {
   health: number,
   mode: string,
+  hints: number,
   accomplishment: string
 }
 
 const initialState: LevelInitialState = {
   health: 3,
   mode: 'block',
+  hints: 3,
   accomplishment: '',
 };
 
@@ -23,6 +25,7 @@ const levelsSlice = createSlice({
       const { accomplishment } = state;
       state.accomplishment = `${accomplishment.substring(0, payload)}1${accomplishment.substring(payload + 1)}`;
     },
+    wasteHint: state => { state.hints -=1 },
     returnToDefaults: () => initialState,
     setMode: (state, action: { payload: string }) => { state.mode = action.payload; },
   },
@@ -37,5 +40,6 @@ export const {
   updateAccomplishment,
   initAccomplishment,
   returnToDefaults,
+  wasteHint
 } = actions;
 export type LevelState = ReturnType<typeof reducer>;

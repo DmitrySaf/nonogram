@@ -8,7 +8,7 @@ import bulb from '../../assets/img/bulb.png';
 import './ModeChanger.scss';
 
 function ModeChanger() {
-  const { mode } = useTypedSelector((state) => state);
+  const { mode, hints } = useTypedSelector((state) => state);
   const dispatch = useDispatch();
   const hintClassnames = classNames({
     'mode-changer__button': true,
@@ -38,7 +38,7 @@ function ModeChanger() {
         <button className="mode-changer__button mode-changer__button-cross" />
         <button className="mode-changer__button mode-changer__button-block" />
       </div>
-      <button className={hintClassnames} data-hints={3} onClick={onHintClick}>
+      <button className={hintClassnames} data-hints={hints} onClick={onHintClick} disabled={hints === 0}>
         <img src={bulb} alt="hint" className="mode-changer__hint-icon" />
       </button>
     </div>

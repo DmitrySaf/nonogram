@@ -2,7 +2,7 @@ import { useState, memo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-import { loseHealth, updateAccomplishment } from '../../store/slices/LevelSlice';
+import { loseHealth, updateAccomplishment, wasteHint } from '../../store/slices/LevelSlice';
 
 import useTypedSelector from '../../hooks/useTypedSelector';
 
@@ -36,6 +36,15 @@ function Cell({
 
   const onClick = () => {
     if (block || cross) return;
+    if (mode === 'hint') {
+      dispatch(wasteHint());
+      if (cellCode) {
+        dispatch(updateAccomplishment(index));
+        setBlock(true);
+        return;
+      }
+      setCross(true);
+    }
     if (mode === 'block') {
       if (cellCode) {
         setBlock(true);
