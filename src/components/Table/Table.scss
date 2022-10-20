@@ -20,7 +20,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: #2196f3;
+      background-color: $color-secondary;
       overflow: hidden;
     }
     &_accomplished .table__body {
@@ -65,7 +65,7 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       opacity: .5;
-      background: url('../../assets/test.png');
+      background: url('../../assets/img/rays.png');
       background-size: contain;
       background-repeat: no-repeat;
       border-radius: 50%;
@@ -145,7 +145,7 @@
           left: 50%;
           translate: -50% -50%;
           rotate: 45deg;
-          width: 2.5rem;
+          width: 2rem;
           height: 0.1875rem;
           border-radius: 5px;
           background-color: #000;
@@ -157,7 +157,7 @@
           left: 50%;
           translate: -50% -50%;
           rotate: -45deg;
-          width: 2.5rem;
+          width: 2rem;
           height: 0.1875rem;
           border-radius: 5px;
           background-color: #000;

@@ -10,7 +10,7 @@ import Level from '../Level/Level';
 import Layout from './Layout';
 import store from '../../store/store';
 
-import * as data from '../../assets/levels-data-list.json';
+import * as data from '../../assets/data/levels-data-list.json';
 import './App.scss';
 
 function App() {
