@@ -29,7 +29,7 @@ function Levels({ levels }: { levels: ILevel[] }) {
           const name = `Level ${order}`;
 
           return (
-            <Link to={`level/${id}`} className="levels__level">
+            <Link key={id} to={`level/${id}`} className="levels__level">
               {name}
             </Link>
           );
