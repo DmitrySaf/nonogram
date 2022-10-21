@@ -42,6 +42,7 @@ function Table({ level }: { level: ILevel }) {
   };
 
   const getRowCode = (inputCode: string, i: number) => inputCode.slice(i * size, (i * size) + size);
+
   if (isAccomplished) {
     return (
       <TablePortal>

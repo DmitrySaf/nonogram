@@ -12,7 +12,8 @@
   gap: 50px;
   padding: 50px 0;
   justify-items: center;
-  &__ray-wrapper {
+  &__rays-wrapper {
+    padding: 0 50px;
     height: 100%;
     display: grid;
     place-items: center;
@@ -21,7 +22,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
+    width: clamp(100vh, 100%, 100vw);
     aspect-ratio: 1 / 1;
     opacity: .5;
     background: url('../../assets/img/rays.png');
@@ -47,7 +48,7 @@
     text-decoration: none;
     color: $color-primary;
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 10px 20px;
     min-width: max-content;
     transition-property: background-color, color, opacity;
     transition-duration: .2s, .2s, .5s;
