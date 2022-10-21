@@ -4,15 +4,7 @@ import classNames from 'classnames';
 import useTypedSelector from '../../hooks/useTypedSelector';
 
 import Cell from './Cell';
-
-interface RowProps {
-  size: number,
-  rowCode: string,
-  index: number,
-  accomplishment: string,
-  colorsCode: string | false,
-  colors: string[] | false
-}
+import { RowProps } from "./IComponentsProps";
 
 function Row({
   size, rowCode, index, accomplishment, colorsCode, colors,

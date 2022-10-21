@@ -5,13 +5,7 @@ import classNames from 'classnames';
 import { loseHealth, updateAccomplishment, wasteHint } from '../../store/slices/LevelSlice';
 
 import useTypedSelector from '../../hooks/useTypedSelector';
-
-interface CellProps {
-  cellCode: number,
-  index: number,
-  cellColor: any,
-  mode: string
-}
+import { CellProps } from "./IComponentsProps";
 
 function Cell({
   cellCode, index, cellColor, mode,

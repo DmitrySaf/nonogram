@@ -1,11 +1,8 @@
 import classNames from 'classnames';
 
-interface ColumnKeysProps {
-  levelCode: string,
-  accomplishment: string
-}
+import { KeysProps } from "./IComponentsProps";
 
-function ColumnKeys({ levelCode, accomplishment }: ColumnKeysProps) {
+function ColumnKeys({ levelCode, accomplishment }: KeysProps) {
   const keyClassnames = classNames({
     'table__keys': true,
     'table__keys_theme_column': true,
