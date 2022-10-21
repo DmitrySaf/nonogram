@@ -6,112 +6,47 @@
 }
 
 .table {
-  width: 100%;
-  &_accomplished {
-    display: grid;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: $color-secondary;
-    overflow: hidden;
-  }
-  &_accomplished .table__body {
-    position: relative;
-    z-index: 1001;
-    box-shadow: 0 0 50px 50px $color-disabled;
-    &::before {
-      content: '';
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      outline: 20px solid #fff;
-      border-radius: 15px;
-    }
-    &::after {
-      content: attr(data-name);
-      position: absolute;
-      top: calc(100% + 10px);
-      left: 50%;
-      translate: -50% -50%;
-      width: max-content;
-      background-color: #fff;
-      padding: 10px 20px;
-      border-radius: 24px;
-      font-size: 1.5rem;
-    }
-  }
-  &_accomplished .table__body td {
-    border: none !important;
-    padding: 0;
-
-  }
-  &_accomplished .table__body .table__keys {
-    display: none;
-  }
-  &_accomplished .table__rays {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    opacity: .5;
-    background: url('../../assets/img/rays.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    box-shadow: inset 50px -50px 100px 0 #2196f3, inset -50px 50px 100px 0 #2196f3;
-    animation: spin 40s linear infinite;
-    user-select: none;
-    translate: -50% -50%;
-    z-index: 110;
-  }
-  &_accomplished .table__return-button {
-    opacity: 1;
-    visibility: visible;
-  }
-  &__content {
-    width: 100%;
-    max-width: 510px;
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    margin-inline: auto;
-    gap: 4px;
-  }
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  margin-inline: auto;
+  gap: 4px;
   &__blocks {
-    width: 100%;
+    width: 510px;
     border-collapse: collapse;
     aspect-ratio: 1 / 1;
-  }
-  &__rays {
-    opacity: 0;
-  }
-  &__return-button {
-    display: flex;
-    opacity: 0;
-    justify-content: center;
-    align-items: center;
-    z-index: 111;
-    width: 10%;
-    aspect-ratio: 3 / 1;
-    background-color: #fff;
-    border-radius: 30px;
-    text-decoration: none;
-    color: $color-primary;
-    font-size: 1.5rem;
-    padding: 10px;
-    visibility: hidden;
-    min-width: max-content;
-    transition-property: background-color, color, opacity;
-    transition-duration: .2s, .2s, .5s;
-    &:hover {
-      color: #fff;
-      background-color: $color-primary;
+    &_accomplished {
+      position: relative;
+      z-index: 1001;
+      box-shadow: 0 0 50px 50px $color-disabled;
+      &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        outline: 20px solid #fff;
+        border-radius: 15px;
+      }
+      &::after {
+        content: attr(data-name);
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        translate: -50% -50%;
+        width: max-content;
+        background-color: #fff;
+        padding: 10px 20px;
+        border-radius: 24px;
+        font-size: 1.5rem;
+      }
+    }
+    &_accomplished td {
+      border: none;
     }
   }
   &__body {
-    //outline: $table-border-style;
+    box-shadow: 0 0 0 2px #000;
   }
   &__cell {
     border: 1px solid #000;
@@ -153,10 +88,6 @@
       }
     }
   }
-  &__empty-space {
-/*     height: 101px;
-    aspect-ratio: 1 / 1; */
-  }
   &__row-keys {
     height: 100%;
     display: flex;
@@ -168,16 +99,17 @@
   &__keys {
     outline: $keys-border-style;
     border-radius: 3px;
-    font-size: clamp(0.875rem, 3vw, 1.5rem);
-    transition: .3s color;
+    font-size: clamp(0.5rem, 3vw, 1.5rem);
+    transition: .3s all;
+    background-color: $color-gray-light;
     &_theme {
       &_row {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding: 0 8px;
         white-space: nowrap;
-        margin: 4px 0;
+        padding: 0 clamp(2px, .5vw, 4px);
+        margin: 2px 0;
         flex-grow: 1;
       }
       &_column {
@@ -185,13 +117,13 @@
         align-items: flex-end;
         justify-content: center;
         white-space: break-spaces;
-        padding: 8px 0 0;
         height: 100%;
         margin: 0 4px;
         flex-grow: 1;
       }
     }
     &_accomplished {
+      background-color: #fff;
       color: $color-disabled;
     }
   }
