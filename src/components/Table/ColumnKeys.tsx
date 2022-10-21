@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import classNames from 'classnames';
 
 interface ColumnKeysProps {
@@ -18,4 +17,4 @@ function ColumnKeys({ levelCode, accomplishment }: ColumnKeysProps) {
   );
 }
 
-export default memo(ColumnKeys);
+export default ColumnKeys;
