@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 
 import Row from './Row';
 import ColumnKeys from './ColumnKeys';
-import RowKeys from "./RowKeys";
+import RowKeys from './RowKeys';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import TablePortal from "../TablePortal/TablePortal";
+import TablePortal from '../TablePortal/TablePortal';
 import { initAccomplishment } from '../../store/slices/LevelSlice';
 
 import './Table.scss';
@@ -27,8 +27,8 @@ function Table({ level }: { level: ILevel }) {
   const isAccomplished = accomplishment.match(/1/g)?.length === code.match(/1/g)?.length;
   const dispatch = useDispatch();
   const tableBlocksClasses = classNames({
-    'table__blocks': true,
-    'table__blocks_accomplished': isAccomplished,
+    table__blocks: true,
+    table__blocks_accomplished: isAccomplished,
   });
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function Table({ level }: { level: ILevel }) {
       <TablePortal>
         <table className={tableBlocksClasses} data-name={level.name}>
           <tbody className="table__body" data-name={level.name}>
-          {
+            {
             [...Array(size)].map((x, i) => (
               <Row
                 accomplishment={getRowCode(accomplishment, i)}
@@ -64,11 +64,11 @@ function Table({ level }: { level: ILevel }) {
           </tbody>
         </table>
       </TablePortal>
-    )
+    );
   }
   return (
     <div className="table">
-      <div className="table__empty-space"></div>
+      <div className="table__empty-space" />
       <div className="table__column-keys">
         {
           [...Array(size)].map((x, i) => (
@@ -83,7 +83,7 @@ function Table({ level }: { level: ILevel }) {
       <div className="table__row-keys">
         {
           [...Array(size)].map((x, i) => (
-            <RowKeys 
+            <RowKeys
               levelCode={getRowCode(code, i)}
               accomplishment={getRowCode(accomplishment, i)}
               key={i}
@@ -93,7 +93,7 @@ function Table({ level }: { level: ILevel }) {
       </div>
       <table className="table__blocks">
         <tbody className="table__body" data-name={level.name}>
-        {
+          {
           [...Array(size)].map((x, i) => (
             <Row
               accomplishment={getRowCode(accomplishment, i)}
@@ -111,7 +111,5 @@ function Table({ level }: { level: ILevel }) {
     </div>
   );
 }
-
-
 
 export default memo(Table);

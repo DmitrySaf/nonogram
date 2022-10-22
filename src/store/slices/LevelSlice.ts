@@ -25,7 +25,7 @@ const levelsSlice = createSlice({
       const { accomplishment } = state;
       state.accomplishment = `${accomplishment.substring(0, payload)}1${accomplishment.substring(payload + 1)}`;
     },
-    wasteHint: state => { state.hints -=1 },
+    wasteHint: (state) => { state.hints -= 1; },
     returnToDefaults: () => initialState,
     setMode: (state, action: { payload: string }) => { state.mode = action.payload; },
   },
@@ -40,6 +40,6 @@ export const {
   updateAccomplishment,
   initAccomplishment,
   returnToDefaults,
-  wasteHint
+  wasteHint,
 } = actions;
 export type LevelState = ReturnType<typeof reducer>;

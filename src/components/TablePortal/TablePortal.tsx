@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import { createPortal } from "react-dom";
-import { CSSTransition } from "react-transition-group";
+import { createPortal } from 'react-dom';
 
 import './TablePortal.scss';
-import { useRef } from "react";
+import { useRef } from 'react';
 
-const TablePortal = ({ children }: {children: JSX.Element}) => {
+const TablePortal = ({ children }: { children: JSX.Element }) => {
   const ref = useRef(null);
   return createPortal(
     <div className="table-portal">
@@ -16,11 +15,10 @@ const TablePortal = ({ children }: {children: JSX.Element}) => {
       <Link to=".." className="table-portal__return-button">
         Return
       </Link>
-      
-    </div>
-    ,
-    document.getElementById("portal-root") as Element
-  )
-}
+
+    </div>,
+    document.getElementById('portal-root') as Element,
+  );
+};
 
 export default TablePortal;
